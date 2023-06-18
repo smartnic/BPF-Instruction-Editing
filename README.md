@@ -1,32 +1,32 @@
-This repository allows one to add/modify bytecode instructions to test if certain changes to a verifier rejected bpf bytecode could make it safe.
+**This repository allows one to add/modify bytecode instructions to test if certain changes to a verifier rejected bpf bytecode could make it safe.**
 
-Command to convert an objdump file to a series of bpf instructions:
+**Command to convert an objdump file to a series of bpf instructions:**
 
 python3 bpf_bytcode_to_bpf_insn_prog.py "objdump file" "output bpf instructions file"
 
-Command to modify existing lines of this file:
+**Command to modify existing lines of this file:**
 
 python3 bpf_insns_orig_2_new.py "bpf instructions file" "output updated bpf instructions file" MODIFY "modifications-specification-file"
  
-Command to add lines to this file:
+**Command to add lines to this file:**
 
 python3 bpf_insns_orig_2_new.py "bpf instructions file" "output updated bpf instructions file" ADD "additions-specification-file"
 
-Format of modifications-specification-file:
+**Format of modifications-specification-file:**
 Each line of this file specifies the modification of an instruction. 
 
 Format of a line: "line-number"|"updated instruction"
 
 Here the line number is the line that needs to be modified assuming line numbers of a file start from 1.
 
-Format of additions-specification-file:
+**Format of additions-specification-file:**
 Each line of this file specifies the addition of an instruction. 
 
 Format of a line: "line-number"|"instruction to add"
 
 Here the line number is the line before which the instruction should be added assuming the line numbers of a file start from 1.
 
-Example:
+**Example:**
 An example involving modification and addition of instructions has been provided in the 'example' folder. Here 'unboundedLoop.objdump' represents the object dump file of the bpf bytecode which fails the verifier safety check due to the presence of an unbounded loop.
 
 Command for converting object dump to a sequence of bpf instructions:
